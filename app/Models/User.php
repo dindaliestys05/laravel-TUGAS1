@@ -50,11 +50,21 @@ class User extends Authenticatable
     /**
      * Get the user's initials
      */
-    public function initials(): string
-    {
-        return Str::of($this->name)
-            ->explode(' ')
-            ->map(fn (string $name) => Str::of($name)->substr(0, 1))
-            ->implode('');
+    public function initials()
+{
+    $name = trim($this->name);
+
+    if (!$name) {
+        return 'GU'; // Guest User default
     }
+
+    $parts = explode(' ', $name);
+    $initials = strtoupper(substr($parts[0], 0, 1));
+
+    if (count($parts) > 1) {
+        $initials .= strtoupper(substr($parts[1], 0, 1));
+    }
+
+    return $initials;
+}
 }
