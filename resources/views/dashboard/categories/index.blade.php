@@ -7,14 +7,14 @@
 
     <div class="flex justify-between items-center mb-4">
         <div>
-            <form action="{{ route('categories.index') }}" method="get">
+            <form action="{{ route('dashboard.categories.index') }}" method="get">
                 @csrf
                 <flux:input icon="magnifying-glass" name="q" value="{{ request('q') }}" placeholder="Search Categories" />
             </form>
         </div>
         <div>
             <flux:button icon="plus">
-                <flux:link href="{{ route('categories.create') }}" variant="subtle">Add New Category</flux:link>
+                <flux:link href="{{ route('dashboard.categories.create') }}" variant="subtle">Add New Category</flux:link>
             </flux:button>
         </div>
     </div>
@@ -51,8 +51,8 @@
                     <td class="px-5 py-5 border-b bg-white text-sm">{{ $category->description }}</td>
                     <td class="px-5 py-5 border-b bg-white text-sm">{{ $category->created_at->format('Y-m-d') }}</td>
                     <td class="px-5 py-5 border-b bg-white text-sm">
-                        <a href="{{ route('categories.edit', $category->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
-                        <form action="{{ route('categories.destroy', $category->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
+                        <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="text-indigo-600 hover:text-indigo-900 mr-3">Edit</a>
+                        <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="POST" class="inline" onsubmit="return confirm('Are you sure you want to delete this category?');">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="text-red-600 hover:text-red-900">Delete</button>

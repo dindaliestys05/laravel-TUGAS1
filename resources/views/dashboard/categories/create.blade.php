@@ -3,7 +3,7 @@
     <flux:subheading>Form untuk menambah product categori baru</flux:subheading>
     <flux:separator variant="subtle"/>
 
-    <form action="{{ route('categories.store') }}" method="POST" enctype="multipart/form-data">
+    <form action="{{ route('dashboard.categories.store') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <flux:input name="name" label="Name" placeholder="Product Category Name" required/>
         <flux:input name="slug" label="Slug" placeholder="Product Category Slug" required/>

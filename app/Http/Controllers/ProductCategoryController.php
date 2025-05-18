@@ -23,20 +23,15 @@ class ProductCategoryController extends Controller
         return view('dashboard.categories.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        // Validasi input
         $validasi = Validator::make($request->all(), [
             'name' => 'required|max:255',
             'slug' => 'required|max:45|unique:product_categories,slug',
             'description' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', // jika ingin validasi gambar
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     
-        // Jika validasi gagal
         if ($validasi->fails()) {
             return redirect()->back()
                 ->withErrors($validasi)
@@ -44,7 +39,6 @@ class ProductCategoryController extends Controller
                 ->withInput();
         }
     
-        // Jika validasi berhasil, simpan ke DB
         $category = new Categories();
         $category->name = $request->name;
         $category->slug = $request->slug;
